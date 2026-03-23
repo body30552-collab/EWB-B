@@ -6,8 +6,6 @@
     <title>أحلى لمة عيد 🌙✨</title>
     <style>
         body { background: #0f172a; color: #fff; text-align: center; font-family: 'Segoe UI', Arial, sans-serif; padding: 20px; margin: 0; overflow-x: hidden; }
-        
-        /* خلفية الدخول */
         #login { 
             position: relative;
             background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('BODY2222.jpeg');
@@ -17,23 +15,17 @@
             border-radius: 30px;
             border: 2px solid #fbbf24;
         }
-
         .container { max-width: 450px; margin: 20px auto; background: #1e293b; padding: 25px; border-radius: 30px; border: 2px solid #fbbf24; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        #main-content, #gallery, #final { display: none; }
+        #main-content, #gallery, #video2-container, #final { display: none; }
         video, img { width: 100%; border-radius: 20px; margin-top: 15px; border: 2px solid #fbbf24; }
-        
-        /* السلايد شو */
         .mySlides { display: none; width: 100%; border-radius: 20px; border: 2px solid #fbbf24; margin-top: 15px; }
         .fade { animation: fadeAnim 1.5s; }
         @keyframes fadeAnim { from {opacity: 0.4} to {opacity: 1} }
-
-        /* نبض القلب */
         @keyframes pulse {
             0% { transform: scale(1); text-shadow: 0 0 10px #ff0000; }
             50% { transform: scale(1.2); text-shadow: 0 0 30px #ff0000; }
             100% { transform: scale(1); text-shadow: 0 0 10px #ff0000; }
         }
-
         button { background: linear-gradient(45deg, #fbbf24, #d97706); color: #000; border: none; padding: 15px; border-radius: 15px; cursor: pointer; font-weight: bold; margin-top: 20px; width: 100%; font-size: 18px; transition: 0.3s; }
         input { padding: 12px; border-radius: 12px; width: 90%; margin-bottom: 15px; text-align: center; border: 2px solid #fbbf24; background: #0f172a; color: #fff; font-size: 16px; box-sizing: border-box; }
         .text-box { background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 20px; margin-top: 20px; color: #f1f5f9; line-height: 1.8; border-right: 5px solid #fbbf24; text-align: right; }
@@ -45,7 +37,7 @@
     <div class="container" id="login">
         <div style="font-size: 40px; margin-bottom: 10px;">🎁✨🌙</div>
         <h2>يا أهلاً بـ لمة العيلة!</h2>
-        <p>اكتب الباسورد السري عشان تدخل</p>
+        <p> اكتب الباسورد السري (عددنا في الخروجه ) </p>
         <input type="password" id="pass" placeholder="الباسورد هنا...">
         <button onclick="login()">ادخل عيّد علينا 🍬</button>
     </div>
@@ -53,80 +45,82 @@
     <div class="container" id="main-content">
         <h1>عيد مبارك يا أحلى عيلة ❤️</h1>
         
-        <video controls><source src="BODY2.mp4" type="video/mp4"></video>
-        <video controls><source src="BODY22.mp4" type="video/mp4"></video>
+        <video id="vid1" controls autoplay muted>
+            <source src="BODY2.mp4" type="video/mp4">
+        </video>
 
-        <div class="text-box">
-            <p>كل سنة وإحنا متجمعين.. ذكرياتنا هي أحلى حاجة في العيد! ❤️</p>
+        <div id="video2-container">
+            <video id="vid2" controls>
+                <source src="BODY22.mp4" type="video/mp4">
+            </video>
         </div>
 
-        <button onclick="showGallery()">شوف صور ذكرياتنا سوا 📸</button>
+        <div class="text-box">
+            <p>كل سنة وإحنا متجمعين.. اتفرجوا على الذكريات للأخر ❤️</p>
+        </div>
 
         <div id="gallery">
             <audio id="eidMusic"><source src="BODY222.aac" type="audio/aac"></audio>
-
             <div class="slideshow-container">
                 <img class="mySlides fade" src="BODY2222.jpeg">
                 <img class="mySlides fade" src="body1.jpeg">
                 <img class="mySlides fade" src="body2.jpeg">
             </div>
-            
-            <button onclick="showFinal()">أهم حاجة في العيد 🎀</button>
-        </div>
-
-        <div id="final" style="margin-top: 30px;">
-            <h1 style="font-size: 2rem; color: #fbbf24;">🌙 لمتنا هي العيد 🌙</h1>
+            <h2 style="color: #fbbf24; margin-top: 15px;">ذكرياتنا سوا ✨</h2>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
+        const v1 = document.getElementById("vid1");
+        const v2 = document.getElementById("vid2");
+        const v2Container = document.getElementById("video2-container");
+        const gallery = document.getElementById("gallery");
+        const music = document.getElementById("eidMusic");
+
         function login() {
-            // الباسورد رقم 1 كما طلبت
             if(document.getElementById("pass").value === "7") {
                 document.getElementById("login").style.display = "none";
                 document.getElementById("main-content").style.display = "block";
                 confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+                v1.play(); // يبدأ الفيديو الأول فور الدخول
             } else { alert("الباسورد غلط!"); }
         }
+
+        // 1. لما الفيديو الأول يخلص -> شغل التاني
+        v1.onended = function() {
+            v1.style.display = "none";
+            v2Container.style.display = "block";
+            v2.play();
+        };
+
+        // 2. لما الفيديو التاني يخلص -> شغل الأغنية والصور
+        v2.onended = function() {
+            v2Container.style.display = "none";
+            gallery.style.display = "block";
+            music.play();
+            runSlideshow();
+        };
+
+        // 3. لما الأغنية تخلص -> القلب الأحمر
+        music.onended = function() {
+            document.body.innerHTML = `
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: #0f172a; width: 100vw;">
+                    <h1 style="font-size: 150px; animation: pulse 1s infinite; margin: 0;">❤️</h1>
+                    <h2 style="color: #fbbf24; font-family: 'Segoe UI'; margin-top: 20px;">كل سنة وإحنا سوا ❤️</h2>
+                </div>
+            `;
+        };
 
         var slideIndex = 0;
         function runSlideshow() {
             var i;
             var slides = document.getElementsByClassName("mySlides");
-            if (slides.length === 0) return;
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";  
-            }
+            for (i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
             slideIndex++;
             if (slideIndex > slides.length) {slideIndex = 1}    
             slides[slideIndex-1].style.display = "block";  
             setTimeout(runSlideshow, 7000); 
-        }
-
-        function showGallery() { 
-            document.getElementById("gallery").style.display = "block"; 
-            var audio = document.getElementById("eidMusic");
-            audio.play();
-            runSlideshow(); 
-
-            // حركة قفل الموقع والقلب عند انتهاء الأغنية
-            audio.onended = function() {
-                document.body.innerHTML = `
-                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: #0f172a; width: 100vw;">
-                        <h1 style="font-size: 150px; animation: pulse 1s infinite; margin: 0; cursor: default;">❤️</h1>
-                        <h2 style="color: #fbbf24; font-family: 'Segoe UI'; margin-top: 20px; text-align: center;">كل سنة وإحنا سوا ❤️</h2>
-                    </div>
-                `;
-            };
-
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-        }
-
-        function showFinal() { 
-            document.getElementById("final").style.display = "block"; 
-            confetti({ particleCount: 150, spread: 100, origin: { y: 0.8 } });
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         }
     </script>
 </body>
