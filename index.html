@@ -5,74 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أحلى لمة عيد 🌙✨</title>
     <style>
-        /* خلفية الدخول بصورتك */
-        body { 
-            background: #0f172a; 
-            color: #fff; 
-            text-align: center; 
-            font-family: 'Segoe UI', Arial, sans-serif; 
-            margin: 0; 
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #login-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: url('BODY2222.jpeg') no-repeat center center/cover;
-            filter: blur(8px) brightness(0.4);
-            z-index: -1;
-        }
-
-        .container { 
-            max-width: 450px; 
-            width: 90%;
-            background: rgba(30, 41, 59, 0.8); 
-            padding: 25px; 
-            border-radius: 30px; 
-            border: 2px solid #fbbf24; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
-            backdrop-filter: blur(10px);
-        }
-
-        #main-content, #gallery, #final { display: none; }
+        /* الخلفية والواجهة */
+        body { background: #0f172a; color: #fff; text-align: center; font-family: 'Segoe UI', Arial, sans-serif; padding: 20px; margin: 0; }
         
-        video, .slideshow-container img { 
-            width: 100%; 
-            border-radius: 20px; 
-            margin-top: 15px; 
-            border: 2px solid #fbbf24; 
+        /* حركة خلفية الدخول */
+        #login { 
+            position: relative;
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('BODY2222.jpeg');
+            background-size: cover;
+            background-position: center;
+            padding: 40px 20px;
+            border-radius: 30px;
+            border: 2px solid #fbbf24;
         }
 
+        .container { max-width: 450px; margin: 20px auto; background: #1e293b; padding: 25px; border-radius: 30px; border: 2px solid #fbbf24; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        #main-content, #gallery, #final { display: none; }
+        video, img { width: 100%; border-radius: 20px; margin-top: 15px; border: 2px solid #fbbf24; }
+        
         /* تنسيق السلايد شو */
-        .slideshow-container {
-            position: relative;
-            margin-top: 20px;
-        }
-        .mySlides {
-            display: none;
-            animation: fadeEffect 1.5s;
-        }
-        @keyframes fadeEffect {
-            from {opacity: 0.4} to {opacity: 1}
-        }
+        .mySlides { display: none; width: 100%; border-radius: 20px; border: 2px solid #fbbf24; margin-top: 15px; }
+        .fade { animation: fadeAnim 1.5s; }
+        @keyframes fadeAnim { from {opacity: 0.4} to {opacity: 1} }
 
         button { background: linear-gradient(45deg, #fbbf24, #d97706); color: #000; border: none; padding: 15px; border-radius: 15px; cursor: pointer; font-weight: bold; margin-top: 20px; width: 100%; font-size: 18px; transition: 0.3s; }
-        input { padding: 12px; border-radius: 12px; width: 90%; margin-bottom: 15px; text-align: center; border: 2px solid #fbbf24; background: #0f172a; color: #fff; font-size: 16px; }
-        .text-box { background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 20px; margin-top: 20px; color: #f1f5f9; line-height: 1.8; border-right: 5px solid #fbbf24; text-align: right; }
+        input { padding: 12px; border-radius: 12px; width: 90%; margin-bottom: 15px; text-align: center; border: 2px solid #fbbf24; background: #0f172a; color: #fff; font-size: 16px; box-sizing: border-box; }
+        .text-box { background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 20px; margin-top: 20px; color: #f1f5f9; line-height: 1.8; font-size: 17px; border-right: 5px solid #fbbf24; text-align: right; }
         h1 { color: #fbbf24; }
     </style>
 </head>
 <body>
 
-    <div id="login-bg"></div>
-
     <div class="container" id="login">
-        <div style="font-size: 40px;">🎁✨🌙</div>
+        <div style="font-size: 40px; margin-bottom: 10px;">🎁✨🌙</div>
         <h2>يا أهلاً بـ لمة العيلة!</h2>
-        <input type="password" id="pass" placeholder="الباسورد السري...">
+        <p>اكتب الباسورد السري عشان تدخل الفرحة</p>
+        <input type="password" id="pass" placeholder="الباسورد هنا...">
         <button onclick="login()">ادخل عيّد علينا 🍬</button>
     </div>
 
@@ -86,17 +54,17 @@
             <p>كل سنة وإحنا متجمعين.. ذكرياتنا هي أحلى حاجة في العيد! ❤️</p>
         </div>
 
-        <button onclick="showGallery()">ابدأ عرض الذكريات 📸</button>
+        <button onclick="showGallery()">شوف صور ذكرياتنا سوا 📸</button>
 
         <div id="gallery">
             <audio id="eidMusic"><source src="BODY222.aac" type="audio/aac"></audio>
-            
-            <div class="slideshow-container">
-                <div class="mySlides"><img src="BODY2222.jpeg"></div>
-                <div class="mySlides"><img src="body1.jpeg"></div>
-                <div class="mySlides"><img src="body2.jpeg"></div>
-            </div>
 
+            <div class="slideshow-container">
+                <img class="mySlides fade" src="BODY2222.jpeg">
+                <img class="mySlides fade" src="body1.jpeg">
+                <img class="mySlides fade" src="body2.jpeg">
+            </div>
+            
             <button onclick="showFinal()">أهم حاجة في العيد 🎀</button>
         </div>
 
@@ -115,27 +83,31 @@
             } else { alert("الباسورد غلط!"); }
         }
 
+        // كود السلايد شو
         var slideIndex = 0;
-        function showSlides() {
+        function runSlideshow() {
             var i;
             var slides = document.getElementsByClassName("mySlides");
-            for (i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
             slideIndex++;
-            if (slideIndex > slides.length) {slideIndex = 1}
-            slides[slideIndex-1].style.display = "block";
-            setTimeout(showSlides, 7000); // يغير الصورة كل 7 ثواني
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex-1].style.display = "block";  
+            setTimeout(runSlideshow, 7000); // يغير كل 7 ثواني
         }
 
         function showGallery() { 
             document.getElementById("gallery").style.display = "block"; 
             document.getElementById("eidMusic").play();
-            showSlides(); // تشغيل السلايد شو
+            runSlideshow(); // ابدأ الحركة
             window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         }
 
         function showFinal() { 
             document.getElementById("final").style.display = "block"; 
             confetti({ particleCount: 150, spread: 100, origin: { y: 0.8 } });
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         }
     </script>
 </body>
