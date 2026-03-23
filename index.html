@@ -5,31 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أحلى لمة عيد 🌙✨</title>
     <style>
-        body { background: #0f172a; color: #fff; text-align: center; font-family: 'Segoe UI', Arial, sans-serif; padding: 20px; margin: 0; overflow-x: hidden; }
+        body { background: #0f172a; color: #fff; text-align: center; font-family: 'Segoe UI', Arial, sans-serif; padding: 20px; margin: 0; }
+        
         #login { 
-            position: relative;
             background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('BODY2222.jpeg');
-            background-size: cover;
-            background-position: center;
-            padding: 40px 20px;
-            border-radius: 30px;
-            border: 2px solid #fbbf24;
+            background-size: cover; background-position: center;
+            padding: 40px 20px; border-radius: 30px; border: 2px solid #fbbf24;
         }
+
         .container { max-width: 450px; margin: 20px auto; background: #1e293b; padding: 25px; border-radius: 30px; border: 2px solid #fbbf24; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        #main-content, #gallery, #video2-container, #final { display: none; }
+        #main-content, #gallery, #vid2-box { display: none; }
         video, img { width: 100%; border-radius: 20px; margin-top: 15px; border: 2px solid #fbbf24; }
+        
         .mySlides { display: none; width: 100%; border-radius: 20px; border: 2px solid #fbbf24; margin-top: 15px; }
         .fade { animation: fadeAnim 1.5s; }
         @keyframes fadeAnim { from {opacity: 0.4} to {opacity: 1} }
+
+        button { background: linear-gradient(45deg, #fbbf24, #d97706); color: #000; border: none; padding: 15px; border-radius: 15px; cursor: pointer; font-weight: bold; margin-top: 20px; width: 100%; font-size: 18px; }
+        input { padding: 12px; border-radius: 12px; width: 90%; margin-bottom: 15px; text-align: center; border: 2px solid #fbbf24; background: #0f172a; color: #fff; font-size: 16px; box-sizing: border-box; }
+        
         @keyframes pulse {
             0% { transform: scale(1); text-shadow: 0 0 10px #ff0000; }
             50% { transform: scale(1.2); text-shadow: 0 0 30px #ff0000; }
             100% { transform: scale(1); text-shadow: 0 0 10px #ff0000; }
         }
-        button { background: linear-gradient(45deg, #fbbf24, #d97706); color: #000; border: none; padding: 15px; border-radius: 15px; cursor: pointer; font-weight: bold; margin-top: 20px; width: 100%; font-size: 18px; transition: 0.3s; }
-        input { padding: 12px; border-radius: 12px; width: 90%; margin-bottom: 15px; text-align: center; border: 2px solid #fbbf24; background: #0f172a; color: #fff; font-size: 16px; box-sizing: border-box; }
-        .text-box { background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 20px; margin-top: 20px; color: #f1f5f9; line-height: 1.8; border-right: 5px solid #fbbf24; text-align: right; }
-        h1 { color: #fbbf24; }
     </style>
 </head>
 <body>
@@ -37,77 +36,70 @@
     <div class="container" id="login">
         <div style="font-size: 40px; margin-bottom: 10px;">🎁✨🌙</div>
         <h2>يا أهلاً بـ لمة العيلة!</h2>
-        <p> اكتب الباسورد السري (عددنا في الخروجه ) </p>
-        <input type="password" id="pass" placeholder="الباسورد هنا...">
+        <input type="password" id="pass" placeholder="الباسورد السري...">
         <button onclick="login()">ادخل عيّد علينا 🍬</button>
     </div>
 
     <div class="container" id="main-content">
         <h1>عيد مبارك يا أحلى عيلة ❤️</h1>
         
-        <video id="vid1" controls autoplay muted>
+        <video id="v1" controls>
             <source src="BODY2.mp4" type="video/mp4">
         </video>
 
-        <div id="video2-container">
-            <video id="vid2" controls>
+        <div id="vid2-box">
+            <video id="v2" controls>
                 <source src="BODY22.mp4" type="video/mp4">
             </video>
         </div>
 
-        <div class="text-box">
-            <p>كل سنة وإحنا متجمعين.. اتفرجوا على الذكريات للأخر ❤️</p>
-        </div>
-
         <div id="gallery">
-            <audio id="eidMusic"><source src="BODY222.aac" type="audio/aac"></audio>
-            <div class="slideshow-container">
+            <audio id="music"><source src="BODY222.aac" type="audio/aac"></audio>
+            <div id="slides-area">
                 <img class="mySlides fade" src="BODY2222.jpeg">
                 <img class="mySlides fade" src="body1.jpeg">
                 <img class="mySlides fade" src="body2.jpeg">
             </div>
-            <h2 style="color: #fbbf24; margin-top: 15px;">ذكرياتنا سوا ✨</h2>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
-        const v1 = document.getElementById("vid1");
-        const v2 = document.getElementById("vid2");
-        const v2Container = document.getElementById("video2-container");
+        const v1 = document.getElementById("v1");
+        const v2 = document.getElementById("v2");
+        const v2Box = document.getElementById("vid2-box");
         const gallery = document.getElementById("gallery");
-        const music = document.getElementById("eidMusic");
+        const music = document.getElementById("music");
 
         function login() {
             if(document.getElementById("pass").value === "7") {
                 document.getElementById("login").style.display = "none";
                 document.getElementById("main-content").style.display = "block";
                 confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-                v1.play(); // يبدأ الفيديو الأول فور الدخول
+                v1.play(); // بيبدأ الفيديو الأول
             } else { alert("الباسورد غلط!"); }
         }
 
-        // 1. لما الفيديو الأول يخلص -> شغل التاني
+        // تسلسل الفيديوهات
         v1.onended = function() {
             v1.style.display = "none";
-            v2Container.style.display = "block";
+            v2Box.style.display = "block";
             v2.play();
         };
 
-        // 2. لما الفيديو التاني يخلص -> شغل الأغنية والصور
         v2.onended = function() {
-            v2Container.style.display = "none";
+            v2Box.style.display = "none";
             gallery.style.display = "block";
             music.play();
             runSlideshow();
         };
 
-        // 3. لما الأغنية تخلص -> القلب الأحمر
+        // قفلة الموقع بالقلب
         music.onended = function() {
             document.body.innerHTML = `
-                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: #0f172a; width: 100vw;">
-                    <h1 style="font-size: 150px; animation: pulse 1s infinite; margin: 0;">❤️</h1>
-                    <h2 style="color: #fbbf24; font-family: 'Segoe UI'; margin-top: 20px;">كل سنة وإحنا سوا ❤️</h2>
+                <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;background:#0f172a;">
+                    <h1 style="font-size:150px;animation:pulse 1s infinite;margin:0;">❤️</h1>
+                    <h2 style="color:#fbbf24;margin-top:20px;">كل سنة وإحنا سوا ❤️</h2>
                 </div>
             `;
         };
