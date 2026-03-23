@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أحلى لمة عيد 🌙✨</title>
     <style>
-        /* الخلفية والواجهة */
-        body { background: #0f172a; color: #fff; text-align: center; font-family: 'Segoe UI', Arial, sans-serif; padding: 20px; margin: 0; }
+        body { background: #0f172a; color: #fff; text-align: center; font-family: 'Segoe UI', Arial, sans-serif; padding: 20px; margin: 0; overflow-x: hidden; }
         
-        /* حركة خلفية الدخول */
+        /* خلفية الدخول */
         #login { 
             position: relative;
             background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('BODY2222.jpeg');
@@ -23,14 +22,21 @@
         #main-content, #gallery, #final { display: none; }
         video, img { width: 100%; border-radius: 20px; margin-top: 15px; border: 2px solid #fbbf24; }
         
-        /* تنسيق السلايد شو */
+        /* السلايد شو */
         .mySlides { display: none; width: 100%; border-radius: 20px; border: 2px solid #fbbf24; margin-top: 15px; }
         .fade { animation: fadeAnim 1.5s; }
         @keyframes fadeAnim { from {opacity: 0.4} to {opacity: 1} }
 
+        /* نبض القلب */
+        @keyframes pulse {
+            0% { transform: scale(1); text-shadow: 0 0 10px #ff0000; }
+            50% { transform: scale(1.2); text-shadow: 0 0 30px #ff0000; }
+            100% { transform: scale(1); text-shadow: 0 0 10px #ff0000; }
+        }
+
         button { background: linear-gradient(45deg, #fbbf24, #d97706); color: #000; border: none; padding: 15px; border-radius: 15px; cursor: pointer; font-weight: bold; margin-top: 20px; width: 100%; font-size: 18px; transition: 0.3s; }
         input { padding: 12px; border-radius: 12px; width: 90%; margin-bottom: 15px; text-align: center; border: 2px solid #fbbf24; background: #0f172a; color: #fff; font-size: 16px; box-sizing: border-box; }
-        .text-box { background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 20px; margin-top: 20px; color: #f1f5f9; line-height: 1.8; font-size: 17px; border-right: 5px solid #fbbf24; text-align: right; }
+        .text-box { background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 20px; margin-top: 20px; color: #f1f5f9; line-height: 1.8; border-right: 5px solid #fbbf24; text-align: right; }
         h1 { color: #fbbf24; }
     </style>
 </head>
@@ -39,7 +45,7 @@
     <div class="container" id="login">
         <div style="font-size: 40px; margin-bottom: 10px;">🎁✨🌙</div>
         <h2>يا أهلاً بـ لمة العيلة!</h2>
-        <p>اكتب الباسورد السري عشان تدخل   الباسورد عددنا </p>
+        <p>اكتب الباسورد السري عشان تدخل</p>
         <input type="password" id="pass" placeholder="الباسورد هنا...">
         <button onclick="login()">ادخل عيّد علينا 🍬</button>
     </div>
@@ -76,31 +82,44 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
         function login() {
-            if(document.getElementById("pass").value === "1") {
+            // الباسورد رقم 1 كما طلبت
+            if(document.getElementById("pass").value === "7") {
                 document.getElementById("login").style.display = "none";
                 document.getElementById("main-content").style.display = "block";
                 confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
             } else { alert("الباسورد غلط!"); }
         }
 
-        // كود السلايد شو
         var slideIndex = 0;
         function runSlideshow() {
             var i;
             var slides = document.getElementsByClassName("mySlides");
+            if (slides.length === 0) return;
             for (i = 0; i < slides.length; i++) {
                 slides[i].style.display = "none";  
             }
             slideIndex++;
-            if (slideIndex > slides.length) {slideIndex = 7}    
+            if (slideIndex > slides.length) {slideIndex = 1}    
             slides[slideIndex-1].style.display = "block";  
-            setTimeout(runSlideshow, 7000); // يغير كل 7 ثواني
+            setTimeout(runSlideshow, 7000); 
         }
 
         function showGallery() { 
             document.getElementById("gallery").style.display = "block"; 
-            document.getElementById("eidMusic").play();
-            runSlideshow(); // ابدأ الحركة
+            var audio = document.getElementById("eidMusic");
+            audio.play();
+            runSlideshow(); 
+
+            // حركة قفل الموقع والقلب عند انتهاء الأغنية
+            audio.onended = function() {
+                document.body.innerHTML = `
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: #0f172a; width: 100vw;">
+                        <h1 style="font-size: 150px; animation: pulse 1s infinite; margin: 0; cursor: default;">❤️</h1>
+                        <h2 style="color: #fbbf24; font-family: 'Segoe UI'; margin-top: 20px; text-align: center;">كل سنة وإحنا سوا ❤️</h2>
+                    </div>
+                `;
+            };
+
             window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         }
 
