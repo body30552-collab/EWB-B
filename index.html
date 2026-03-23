@@ -5,105 +5,137 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أحلى لمة عيد 🌙✨</title>
     <style>
-        body { background: #0f172a; color: #fff; text-align: center; font-family: 'Segoe UI', Arial, sans-serif; padding: 20px; margin: 0; }
-        .container { max-width: 450px; margin: 20px auto; background: #1e293b; padding: 25px; border-radius: 30px; border: 2px solid #fbbf24; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        /* خلفية الدخول بصورتك */
+        body { 
+            background: #0f172a; 
+            color: #fff; 
+            text-align: center; 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            margin: 0; 
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #login-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('BODY2222.jpeg') no-repeat center center/cover;
+            filter: blur(8px) brightness(0.4);
+            z-index: -1;
+        }
+
+        .container { 
+            max-width: 450px; 
+            width: 90%;
+            background: rgba(30, 41, 59, 0.8); 
+            padding: 25px; 
+            border-radius: 30px; 
+            border: 2px solid #fbbf24; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+            backdrop-filter: blur(10px);
+        }
+
         #main-content, #gallery, #final { display: none; }
-        video, img { width: 100%; border-radius: 20px; margin-top: 15px; border: 2px solid #fbbf24; box-shadow: 0 5px 15px rgba(251, 191, 36, 0.2); }
+        
+        video, .slideshow-container img { 
+            width: 100%; 
+            border-radius: 20px; 
+            margin-top: 15px; 
+            border: 2px solid #fbbf24; 
+        }
+
+        /* تنسيق السلايد شو */
+        .slideshow-container {
+            position: relative;
+            margin-top: 20px;
+        }
+        .mySlides {
+            display: none;
+            animation: fadeEffect 1.5s;
+        }
+        @keyframes fadeEffect {
+            from {opacity: 0.4} to {opacity: 1}
+        }
+
         button { background: linear-gradient(45deg, #fbbf24, #d97706); color: #000; border: none; padding: 15px; border-radius: 15px; cursor: pointer; font-weight: bold; margin-top: 20px; width: 100%; font-size: 18px; transition: 0.3s; }
-        button:active { transform: scale(0.95); }
-        input { padding: 12px; border-radius: 12px; width: 90%; margin-bottom: 15px; text-align: center; border: 2px solid #fbbf24; background: #0f172a; color: #fff; font-size: 16px; box-sizing: border-box; }
-        .text-box { background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 20px; margin-top: 20px; color: #f1f5f9; line-height: 1.8; font-size: 17px; border-right: 5px solid #fbbf24; text-align: right; }
-        h1 { color: #fbbf24; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-        .emoji-header { font-size: 40px; margin-bottom: 10px; }
+        input { padding: 12px; border-radius: 12px; width: 90%; margin-bottom: 15px; text-align: center; border: 2px solid #fbbf24; background: #0f172a; color: #fff; font-size: 16px; }
+        .text-box { background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 20px; margin-top: 20px; color: #f1f5f9; line-height: 1.8; border-right: 5px solid #fbbf24; text-align: right; }
+        h1 { color: #fbbf24; }
     </style>
 </head>
 <body>
 
+    <div id="login-bg"></div>
+
     <div class="container" id="login">
-        <div class="emoji-header">🎁✨🌙</div>
+        <div style="font-size: 40px;">🎁✨🌙</div>
         <h2>يا أهلاً بـ لمة العيلة!</h2>
-        <p>اكتب الباسورد السري عشان تدخل الفرحة <br> (الباسورد عددنا في الخروجه)</p>
-        <input type="password" id="pass" placeholder="الباسورد هنا...">
+        <input type="password" id="pass" placeholder="الباسورد السري...">
         <button onclick="login()">ادخل عيّد علينا 🍬</button>
     </div>
 
     <div class="container" id="main-content">
         <h1>عيد مبارك يا أحلى عيلة ❤️</h1>
         
-        <video controls>
-            <source src="BODY2.mp4" type="video/mp4"> 
-            متصفحك لا يدعم تشغيل الفيديو.
-        </video>
-
-        <video controls>
-            <source src="BODY22.mp4" type="video/mp4"> 
-            متصفحك لا يدعم تشغيل الفيديو.
-        </video>
+        <video controls><source src="BODY2.mp4" type="video/mp4"></video>
+        <video controls><source src="BODY3.mp4" type="video/mp4"></video>
 
         <div class="text-box">
-            <p>كل سنة وإحنا متجمعين، وكل سنة ولمتنا هي أحلى حاجة في العيد.. ولاد وبنات، كبار وصغيرين، إحنا اللي بنعمل للفرحة طعم! ❤️</p>
+            <p>كل سنة وإحنا متجمعين.. ذكرياتنا هي أحلى حاجة في العيد! ❤️</p>
         </div>
 
-        <button onclick="showGallery()">شوف صور ذكرياتنا سوا 📸</button>
+        <button onclick="showGallery()">ابدأ عرض الذكريات 📸</button>
 
-        <div id="gallery" style="display: none;">
-    <audio id="eidMusic">
-        <source src="BODY222.aac" type="audio/aac">
-    </audio>
+        <div id="gallery">
+            <audio id="eidMusic"><source src="BODY222.aac" type="audio/aac"></audio>
+            
+            <div class="slideshow-container">
+                <div class="mySlides"><img src="BODY2222.jpeg"></div>
+                <div class="mySlides"><img src="body1.jpeg"></div>
+                <div class="mySlides"><img src="body2.jpeg"></div>
+            </div>
 
-    <img src="BODY2222.jpeg" alt="ذكريات 1">
-    <img src="body1.jpeg" alt="ذكريات 2">
-    <img src="body2.jpeg" alt="ذكريات 3">
+            <button onclick="showFinal()">أهم حاجة في العيد 🎀</button>
+        </div>
 
-    <button onclick="showFinal()">أهم حاجة في العيد 🎀</button>
-</div>
-
-        <div id="final" style="display: none; margin-top: 30px;">
+        <div id="final" style="margin-top: 30px;">
             <h1 style="font-size: 2rem; color: #fbbf24;">🌙 لمتنا هي العيد 🌙</h1>
-            <p style="font-size: 1.1rem;">كل سنة وإحنا دايماً سوا في الخير</p>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
         function login() {
-            if(document.getElementById("pass").value === "7") {
+            if(document.getElementById("pass").value === "1") {
                 document.getElementById("login").style.display = "none";
                 document.getElementById("main-content").style.display = "block";
-                
-                var duration = 3 * 1000;
-                var end = Date.now() + duration;
-                (function frame() {
-                  confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#fbbf24', '#3b82f6', '#ef4444'] });
-                  confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#fbbf24', '#3b82f6', '#ef4444'] });
-                  if (Date.now() < end) { requestAnimationFrame(frame); }
-                }());
-            } else { 
-                alert("الباسورد غلط.. شكلك غريب عن الخروجه ! 😂"); 
-            }
+                confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+            } else { alert("الباسورد غلط!"); }
+        }
+
+        var slideIndex = 0;
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            slides[slideIndex-1].style.display = "block";
+            setTimeout(showSlides, 7000); // يغير الصورة كل 7 ثواني
         }
 
         function showGallery() { 
             document.getElementById("gallery").style.display = "block"; 
-            
-            var audio = document.getElementById("eidMusic");
-            audio.play().catch(function(error) {
-                console.log("التشغيل التلقائي محجوب");
-            });
-
-            // سكرول لتحت عشان يشوف الصور أول ما تظهر
-            setTimeout(() => {
-                window.scrollBy({ top: 400, behavior: 'smooth' });
-            }, 100);
+            document.getElementById("eidMusic").play();
+            showSlides(); // تشغيل السلايد شو
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         }
 
         function showFinal() { 
             document.getElementById("final").style.display = "block"; 
             confetti({ particleCount: 150, spread: 100, origin: { y: 0.8 } });
-            
-            setTimeout(() => {
-                window.scrollBy({ top: 500, behavior: 'smooth' });
-            }, 100);
         }
     </script>
 </body>
