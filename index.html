@@ -22,7 +22,7 @@
     <div class="container" id="login">
         <div class="emoji-header">🎁✨🌙</div>
         <h2>يا أهلاً بـ لمة العيلة!</h2>
-        <p>اكتب الباسورد السري عشان تدخل الفرحة   الباسورد عددنا في الخروجه </p>
+        <p>اكتب الباسورد السري عشان تدخل الفرحة <br> (الباسورد عددنا في الخروجه)</p>
         <input type="password" id="pass" placeholder="الباسورد هنا...">
         <button onclick="login()">ادخل عيّد علينا 🍬</button>
     </div>
@@ -36,7 +36,8 @@
         </video>
 
         <video controls>
-            <source src="BODY22.mp4" type="video/mp4"> متصفحك لا يدعم تشغيل الفيديو.
+            <source src="BODY22.mp4" type="video/mp4"> 
+            متصفحك لا يدعم تشغيل الفيديو.
         </video>
 
         <div class="text-box">
@@ -45,16 +46,19 @@
 
         <button onclick="showGallery()">شوف صور ذكرياتنا سوا 📸</button>
 
-        <div id="gallery">
+        <div id="gallery" style="display: none;">
             <audio id="eidMusic">
-                <source src="BODY222.aac" type="audio/mpeg"> </audio>
+                <source src="BODY222.aac" type="audio/aac"> 
+            </audio>
 
             <img src="BODY2222.jpeg" alt="ذكريات 1">
-            <img src=".body1.jpeg" alt="ذكريات 2">
-            <img src="body2.jpeg" alt="ذكريات 3"> <button onclick="showFinal()">أهم حاجة في العيد 🎀</button>
+            <img src="body1.jpeg" alt="ذكريات 2">
+            <img src="body2.jpeg" alt="ذكريات 3"> 
+            
+            <button onclick="showFinal()">أهم حاجة في العيد 🎀</button>
         </div>
 
-        <div id="final" style="margin-top: 30px;">
+        <div id="final" style="display: none; margin-top: 30px;">
             <h1 style="font-size: 2rem; color: #fbbf24;">🌙 لمتنا هي العيد 🌙</h1>
             <p style="font-size: 1.1rem;">كل سنة وإحنا دايماً سوا في الخير</p>
         </div>
@@ -67,7 +71,6 @@
                 document.getElementById("login").style.display = "none";
                 document.getElementById("main-content").style.display = "block";
                 
-                // احتفال الدخول
                 var duration = 3 * 1000;
                 var end = Date.now() + duration;
                 (function frame() {
@@ -81,22 +84,26 @@
         }
 
         function showGallery() { 
-            // إظهار قسم الصور
             document.getElementById("gallery").style.display = "block"; 
             
-            // تشغيل الأغنية
             var audio = document.getElementById("eidMusic");
             audio.play().catch(function(error) {
-                console.log("التشغيل التلقائي محجوب حتى يتفاعل المستخدم");
+                console.log("التشغيل التلقائي محجوب");
             });
 
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            // سكرول لتحت عشان يشوف الصور أول ما تظهر
+            setTimeout(() => {
+                window.scrollBy({ top: 400, behavior: 'smooth' });
+            }, 100);
         }
 
         function showFinal() { 
             document.getElementById("final").style.display = "block"; 
             confetti({ particleCount: 150, spread: 100, origin: { y: 0.8 } });
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            
+            setTimeout(() => {
+                window.scrollBy({ top: 500, behavior: 'smooth' });
+            }, 100);
         }
     </script>
 </body>
